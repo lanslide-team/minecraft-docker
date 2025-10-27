@@ -1,0 +1,88 @@
+name: Build & Publish Minecraft Images
+
+on:
+  push:
+    branches:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_OWNER: lanslide-team
+  BASE_NAME: spigot-base
+  BUILD_NAME: spigot-build
+  MAP_NAME: spigot-map
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Extract version from branch name
+        id: version
+        run: |
+          BRANCH="${GITHUB_REF##*/}"
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          # Strip leading 'v' → 1.21.8
+          echo "mc_version=${BRANCH#v}" >> $GITHUB_OUTPUT
+          echo "Minecraft version: ${BRANCH#v}"
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build & Push Base image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./base
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.BASE_NAME }}:${{ steps.version.outputs.branch }}
+          labels: |
+            org.opencontainers.image.title=Spigot Base
+            org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & Push Build variant
+        uses: docker/build-push-action@v6
+        with:
+          context: ./build
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.BUILD_NAME }}:${{ steps.version.outputs.branch }}
+          build-args: |
+            BASE_TAG=${{ steps.version.outputs.branch }}
+          labels: |
+            org.opencontainers.image.title=Spigot Build
+            org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & Push Map variant
+        uses: docker/build-push-action@v6
+        with:
+          context: ./map
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.MAP_NAME }}:${{ steps.version.outputs.branch }}
+          build-args: |
+            BASE_TAG=${{ steps.version.outputs.branch }}
+          labels: |
+            org.opencontainers.image.title=Spigot Map
+            org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

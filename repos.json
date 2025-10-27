@@ -1,0 +1,42 @@
+{
+  "bluemap": [
+    "https://github.com/BlueMap-Minecraft/BlueMap",
+    "https://modrinth.com/plugin/bluemap"
+  ],
+  "chatfilter": [
+    "https://modrinth.com/plugin/chatfilter-zepsizola"
+  ],
+  "essentialsx": [
+    "https://modrinth.com/plugin/essentialsx",
+    "https://github.com/EssentialsX/Essentials"
+  ],
+  "geyser": [
+    "https://modrinth.com/plugin/geyser"
+  ],
+  "joincommands": [
+    "https://hangar.papermc.io/SirBlobman/JoinCommands"
+  ],
+  "luckperms": [
+    "https://modrinth.com/plugin/luckperms"
+  ],
+  "multiverse-core": [
+    "https://modrinth.com/plugin/multiverse-core"
+  ],
+  "plotsquared": [
+    "https://mvnrepository.com/artifact/com.intellectualsites.plotsquared/plotsquared-bukkit"
+  ],
+  "protocollib": [
+    "https://github.com/dmulloy2/ProtocolLib"
+  ],
+  "vault": [
+    "https://modrinth.com/plugin/vaultplugin",
+    "https://github.com/MilkBowl/Vault"
+  ],
+  "worldborder": [
+    "https://github.com/PryPurity/WorldBorder"
+  ],
+  "worldedit": [
+    "https://modrinth.com/plugin/worldedit",
+    "https://github.com/EngineHub/WorldEdit"
+  ]
+}

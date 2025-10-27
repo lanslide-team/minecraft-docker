@@ -1,0 +1,41 @@
+# config.yml
+
+# TechniqStone Copyright 2025
+# VaultPlugin is a plugin from TechniqStone.
+
+# Support
+# You can find support and community on our Discord server: https://discord.gg/BEfcrjTJhx
+
+# VaultPlugin Introduction
+# In the case of an empty message, executions that are not to send a message must be marked with an empty string ('')
+
+
+# Permission
+permission_use: vaultplugin.use
+permission_other: vaultplugin.other
+permission_reload: vaultplugin.reload
+
+# News logs
+logger_start: §c§lVaultPlugin §8» §7VaultPlugin successfully activated and loaded!
+logger_stop: §c§lVaultPlugin §8» §7VaultPlugin successfully deactivated and saved!
+logger_create_vault: §c§lVaultPlugin §8» §7vaults.yml has been created!
+logger_error_create_vault: §c§lVaultPlugin §8» §cError when creating the vaults.yml!
+logger_save_vault: §c§lVaultPlugin §8» §7Vault data saved!
+logger_error_save_vault: §c§lVaultPlugin §8» §cError saving the vaults.yml!
+
+# Vault Inventory Title
+title: §c§lVaultPlugin §8» Your Vault
+
+# Message when opening the Vault from a player
+my_vault_open: §c§lVaultPlugin §8» §7Vault open
+vault_open: §c§lVaultPlugin §8» §7Vault opened by §b{player}
+vault_close: §c§lVaultPlugin §8» §7Vault closed, data saved
+player_not_found: §c§lVaultPlugin §8» §cThis player does not exist!
+
+no_permission: §c§lVaultPlugin §8» §cYou have no rights to do this
+
+message_no_player: §c§lVaultPlugin §8» §cThe command can only be used by players!
+
+invalid_command: §c§lVaultPlugin §8» §7Usage §b/vault [Player]
+
+reload_success: §c§lVaultPlugin §8» §7VaultPlugin reloaded!

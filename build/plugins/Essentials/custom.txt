@@ -1,0 +1,12 @@
+#start
+Start Building :)
+
+#clear
+time to restart :)
+
+#done
+your plot is finished and protected :)
+
+#stafflist,onlinestaff
+&6Online Staff:
+{PLAYERLIST:MODERATOR} {PLAYERLIST:ADMIN} {PLAYERLIST:OWNER}
