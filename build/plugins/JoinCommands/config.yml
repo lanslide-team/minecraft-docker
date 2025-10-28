@@ -56,6 +56,15 @@ server-join-commands:
     delay: 20
     first-join-only: true
     permission: ""
+  GameRules:
+    command-list:
+      - execute in minecraft:overworld run gamerule doDaylightCycle false
+      - execute in minecraft:overworld run time set 6000
+      - execute in minecraft:overworld run gamerule doWeatherCycle false
+      - execute in minecraft:overworld run weather clear
+    delay: 20
+    first-join-only: true
+    permission: ""
 # A command ID can be any valid YML section string, but they must all be different
 # To disable all world join commands, set the value to 'world-join-commands: {}'
 world-join-commands: {}

@@ -19,18 +19,18 @@ plotworld:
   generator: PlotSquared
   hidden: false
   hunger: true
-  keep-spawn-in-memory: true
+  keep-spawn-in-memory: false
   player-limit: -1
   portal-form: all
   pvp: true
   respawn-world: ''
   scale: 1.0
-  seed: -3592383130308459991
+  seed: -4064418629080935136
   spawn-location:
     ==: MVSpawnLocation
-    x: 0.0
+    x: -48.0
     y: 63.0
-    z: 0.0
+    z: -112.0
     pitch: 0.0
     yaw: 0.0
   spawning: {}
@@ -57,18 +57,18 @@ world:
   generator: ''
   hidden: false
   hunger: true
-  keep-spawn-in-memory: true
+  keep-spawn-in-memory: false
   player-limit: -1
   portal-form: all
   pvp: true
   respawn-world: ''
   scale: 1.0
-  seed: -4788402291674663892
+  seed: -6313058861545734982
   spawn-location:
     ==: MVSpawnLocation
-    x: -256.0
-    y: 79.0
-    z: -64.0
+    x: 256.0
+    y: 70.0
+    z: -32.0
     pitch: 0.0
     yaw: 0.0
   spawning: {}
@@ -95,18 +95,18 @@ world_nether:
   generator: ''
   hidden: false
   hunger: true
-  keep-spawn-in-memory: true
+  keep-spawn-in-memory: false
   player-limit: -1
   portal-form: all
   pvp: true
   respawn-world: ''
   scale: 8.0
-  seed: -4788402291674663892
+  seed: -6313058861545734982
   spawn-location:
     ==: MVSpawnLocation
-    x: -0.5
-    y: 66.0
-    z: 2.5
+    x: 0.0
+    y: 128.0
+    z: 0.0
     pitch: 0.0
     yaw: 0.0
   spawning: {}
@@ -133,13 +133,13 @@ world_the_end:
   generator: ''
   hidden: false
   hunger: true
-  keep-spawn-in-memory: true
+  keep-spawn-in-memory: false
   player-limit: -1
   portal-form: all
   pvp: true
   respawn-world: ''
   scale: 1.0
-  seed: -4788402291674663892
+  seed: -6313058861545734982
   spawn-location:
     ==: MVSpawnLocation
     x: 0.0

@@ -1,4 +1,4 @@
-ARG MC_VERSION=1.21.8
+ARG MC_VERSION=1.21.9
 ARG JAVA_MAJOR=21
 
 # ---------- Build Stage ----------
@@ -25,8 +25,7 @@ RUN curl -L -o BuildTools.jar \
     java -jar BuildTools.jar --rev ${MC_VERSION}
 
 # Verify build success
-RUN test -f /build/spigot-${MC_VERSION}.jar || (echo "spigot-${MC_VERSION}.jar not found" && ls -al && exit 1)
-
+RUN test -f /build/spigot-*.jar || (echo "spigot-${MC_VERSION}.jar not found" && ls -al && exit 1)
 
 # ---------- Runtime Stage ----------
 FROM eclipse-temurin:${JAVA_MAJOR}-jre
@@ -49,7 +48,7 @@ RUN useradd -m -s /bin/bash mc && \
 WORKDIR /mc
 
 # Copy artifacts from build stage
-COPY --from=build /build/spigot-${MC_VERSION}.jar /mc/spigot.jar
+COPY --from=build /build/spigot-*.jar /mc/spigot.jar
 COPY --from=build /usr/local/bin/mcrcon /usr/local/bin/mcrcon
 
 # Entrypoint + optional helpers (present in your repo)

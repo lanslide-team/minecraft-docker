@@ -1093,8 +1093,6 @@ spawn-on-join: false
 #  - admin
 # End of file <-- No seriously, you're done with configuration.
 
-worlds:
-  plotworld:
-    gamerules:
-      doDaylightCycle: false
-      doWeatherCycle: false
+world-time:
+  world: day
+  plotworld: day

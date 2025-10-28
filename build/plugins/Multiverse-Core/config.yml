@@ -63,7 +63,8 @@ teleport:
   #   - For spawn: `multiverse.core.spawn.<self|other>`
   use-finer-teleport-permissions: true
   # Configures how passengers and vehicles are handled when an entity is teleported.
-  #   default: Server will handle passengers and vehicles, this usually means entities will not be teleported to a different world if they have passengers.
+  #   default: Server will handle passengers and vehicles. On papermc 1.21.10+, all will be retained by default.
+  #                                                        On older versions, all will be dismounted if world changes.
   #   dismount_passengers: Passengers will be removed from the parent entity before the teleport.
   #   dismount_vehicle: Vehicle will be removed and from the parent entity before the teleport.
   #   dismount_all: All passengers and vehicles will be removed from the parent entity before the teleport.

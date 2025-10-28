@@ -1,4 +1,4 @@
-ARG MC_VERSION=1.21.8
+ARG MC_VERSION=1.21.9
 FROM ghcr.io/lanslide-team/spigot-base:v${MC_VERSION}
 #FROM minecraft-base:v${MC_VERSION}
 
