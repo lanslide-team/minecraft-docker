@@ -13,9 +13,9 @@ permissions:
 env:
   REGISTRY: ghcr.io
   IMAGE_OWNER: lanslide-team
-  BASE_NAME: spigot-base
-  BUILD_NAME: spigot-build
-  MAP_NAME: spigot-map
+  BASE_NAME: minecraft-base
+  BUILD_NAME: minecraft-build
+  MAP_NAME: minecraft-map
 
 jobs:
   build-and-push:
@@ -52,7 +52,7 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.BASE_NAME }}:${{ steps.version.outputs.branch }}
           labels: |
-            org.opencontainers.image.title=Spigot Base
+            org.opencontainers.image.title=Minecraft Base
             org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -67,7 +67,7 @@ jobs:
           build-args: |
             BASE_TAG=${{ steps.version.outputs.branch }}
           labels: |
-            org.opencontainers.image.title=Spigot Build
+            org.opencontainers.image.title=Minecraft Build
             org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -82,7 +82,7 @@ jobs:
           build-args: |
             BASE_TAG=${{ steps.version.outputs.branch }}
           labels: |
-            org.opencontainers.image.title=Spigot Map
+            org.opencontainers.image.title=Minecraft Map
             org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
