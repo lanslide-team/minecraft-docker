@@ -1,7 +1,7 @@
 # 🧩 Minecraft Docker Images (LAN-slide)
 
 This repository provides versioned Docker images for running **Spigot-based Minecraft servers**, maintained by [LAN-slide](https://github.com/lanslide-team).  
-Each Minecraft version is kept in its own branch (for example, `v1.21.8`, `v1.22.0`) as a **known-good build**, pinned to matching Spigot and Java versions.
+Each Minecraft version is kept in its own branch (for example, `v1.21.10`, `v1.22.0`) as a **known-good build**, pinned to matching Spigot and Java versions.
 
 ---
 
@@ -28,40 +28,41 @@ Each branch corresponds to a specific Minecraft version and Java runtime.
 Pinned versions are set at the top of `base/Dockerfile`:
 
 ```Dockerfile
-ARG MC_VERSION=1.21.8
+ARG MC_VERSION=1.21.10
 ARG JAVA_MAJOR=21
 ```
 
 To create a new version branch:
 ```bash
 git fetch origin
-git checkout v1.21.8
+git checkout v1.21.10
 git checkout -b v1.22.0
 sed -i 's/MC_VERSION=1\.21\.8/MC_VERSION=1.22.0/' base/Dockerfile
 git commit -am "Bump to Minecraft 1.22.0"
 git push --set-upstream origin v1.22.0
 ```
 
-The CI workflow automatically builds and publishes:
+The CI workflow automatically builds and publishes.
+Therefore, you can pull directly from github:
 
 ```bash
-ghcr.io/lanslide-team/spigot-base:v1.22.0
-ghcr.io/lanslide-team/spigot-build:v1.22.0
-ghcr.io/lanslide-team/spigot-map:v1.22.0
+docker pull ghcr.io/lanslide-team/minecraft-base:v1.21.10
+docker pull ghcr.io/lanslide-team/minecraft-build:v1.21.10
+docker pull ghcr.io/lanslide-team/minecraft-map:v1.21.10
 ```
 
 🚀 Building Locally
 Build the base image
 
 ```bash
-docker build -t ghcr.io/lanslide-team/spigot-base:v1.21.8 ./base
+docker build -t ghcr.io/lanslide-team/minecraft-base:v1.21.10 ./base
 ```
 
 Build plugin or map variants
 
 ```bash
-docker build -t ghcr.io/lanslide-team/spigot-build:v1.21.8 ./build
-docker build -t ghcr.io/lanslide-team/spigot-map:v1.21.8 ./map
+docker build -t ghcr.io/lanslide-team/minecraft-build:v1.21.10 ./build
+docker build -t ghcr.io/lanslide-team/minecraft-map:v1.21.10 ./map
 ```
 
 Run the server
@@ -69,9 +70,9 @@ Run the server
 docker run -d \
   --name spigot_1218 \
   --network mc-macvlan --ip 192.168.1.50 \
-  -e MOTD="LAN-slide Spigot 1.21.8" \
-  -v /srv/minecraft/1.21.8:/mc \
-  ghcr.io/lanslide-team/spigot-base:v1.21.8
+  -e MOTD="LAN-slide Minecraft 1.21.10" \
+  -v /srv/minecraft/1.21.10:/mc \
+  ghcr.io/lanslide-team/minecraft-base:v1.21.10
 ```  
   
 💡 Using macvlan gives your container its own LAN IP, so you don’t need to expose ports (-p).
@@ -105,9 +106,9 @@ Push to GitHub Container Registry (GHCR)
 Automatic tagging under:
 
 ```bash
-ghcr.io/lanslide-team/spigot-base:vX.Y.Z
-ghcr.io/lanslide-team/spigot-build:vX.Y.Z
-ghcr.io/lanslide-team/spigot-map:vX.Y.Z
+ghcr.io/lanslide-team/minecraft-base:vX.Y.Z
+ghcr.io/lanslide-team/minecraft-build:vX.Y.Z
+ghcr.io/lanslide-team/minecraft-map:vX.Y.Z
 ```
 
 🧩 Related Projects
