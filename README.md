@@ -45,23 +45,23 @@ git push --set-upstream origin v1.22.0
 The CI workflow automatically builds and publishes:
 
 ```bash
-ghcr.io/lanslide-team/spigot-base:v1.22.0
-ghcr.io/lanslide-team/spigot-build:v1.22.0
-ghcr.io/lanslide-team/spigot-map:v1.22.0
+ghcr.io/lanslide-team/minecraft-base:v1.22.0
+ghcr.io/lanslide-team/minecraft-build:v1.22.0
+ghcr.io/lanslide-team/minecraft-map:v1.22.0
 ```
 
 🚀 Building Locally
 Build the base image
 
 ```bash
-docker build -t ghcr.io/lanslide-team/spigot-base:v1.21.8 ./base
+docker build -t ghcr.io/lanslide-team/minecraft-base:v1.21.8 ./base
 ```
 
 Build plugin or map variants
 
 ```bash
-docker build -t ghcr.io/lanslide-team/spigot-build:v1.21.8 ./build
-docker build -t ghcr.io/lanslide-team/spigot-map:v1.21.8 ./map
+docker build -t ghcr.io/lanslide-team/minecraft-build:v1.21.8 ./build
+docker build -t ghcr.io/lanslide-team/minecraft-map:v1.21.8 ./map
 ```
 
 Run the server
@@ -69,9 +69,9 @@ Run the server
 docker run -d \
   --name spigot_1218 \
   --network mc-macvlan --ip 192.168.1.50 \
-  -e MOTD="LAN-slide Spigot 1.21.8" \
+  -e MOTD="LAN-slide Minecraft 1.21.8" \
   -v /srv/minecraft/1.21.8:/mc \
-  ghcr.io/lanslide-team/spigot-base:v1.21.8
+  ghcr.io/lanslide-team/minecraft-base:v1.21.8
 ```  
   
 💡 Using macvlan gives your container its own LAN IP, so you don’t need to expose ports (-p).
@@ -105,9 +105,9 @@ Push to GitHub Container Registry (GHCR)
 Automatic tagging under:
 
 ```bash
-ghcr.io/lanslide-team/spigot-base:vX.Y.Z
-ghcr.io/lanslide-team/spigot-build:vX.Y.Z
-ghcr.io/lanslide-team/spigot-map:vX.Y.Z
+ghcr.io/lanslide-team/minecraft-base:vX.Y.Z
+ghcr.io/lanslide-team/minecraft-build:vX.Y.Z
+ghcr.io/lanslide-team/minecraft-map:vX.Y.Z
 ```
 
 🧩 Related Projects
