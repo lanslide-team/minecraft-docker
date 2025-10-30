@@ -42,12 +42,13 @@ git commit -am "Bump to Minecraft 1.22.0"
 git push --set-upstream origin v1.22.0
 ```
 
-The CI workflow automatically builds and publishes:
+The CI workflow automatically builds and publishes.
+Therefore, you can pull directly from github:
 
 ```bash
-ghcr.io/lanslide-team/minecraft-base:v1.22.0
-ghcr.io/lanslide-team/minecraft-build:v1.22.0
-ghcr.io/lanslide-team/minecraft-map:v1.22.0
+docker pull ghcr.io/lanslide-team/minecraft-base:v1.21.8
+docker pull ghcr.io/lanslide-team/minecraft-build:v1.21.8
+docker pull ghcr.io/lanslide-team/minecraft-map:v1.21.8
 ```
 
 🚀 Building Locally
