@@ -5,7 +5,7 @@ Each Minecraft version is kept in its own branch (for example, `v1.21.10`, `v1.2
 
 ---
 
-## 🏗️ Repository Structure
+## 🏗️ Repository Structure 
 
 ```text
 minecraft-docker/
