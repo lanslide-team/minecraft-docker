@@ -157,7 +157,7 @@ fi
 
 if [ -n "$MAP_URL" ]; then
     echo "Downloading world from $MAP_URL..."
-    wget -O download.zip "$MAP_URL" && \
+    wget -O download.zip "$MAP_URL" --no-check-certificate  && \
     unzip -q download.zip
 
     # Find the folder containing level.dat (the actual world root)
