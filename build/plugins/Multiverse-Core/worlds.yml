@@ -25,12 +25,12 @@ plotworld:
   pvp: true
   respawn-world: ''
   scale: 1.0
-  seed: -6933246025171413732
+  seed: -7456171385094830617
   spawn-location:
     ==: MVSpawnLocation
-    x: 160.0
+    x: 0.0
     y: 63.0
-    z: -176.0
+    z: 0.0
     pitch: 0.0
     yaw: 0.0
   spawning: {}
@@ -63,12 +63,12 @@ world:
   pvp: true
   respawn-world: ''
   scale: 1.0
-  seed: -3964870281413135033
+  seed: 8013565057570832439
   spawn-location:
     ==: MVSpawnLocation
-    x: 0.0
-    y: 70.0
-    z: 0.0
+    x: -128.0
+    y: 71.0
+    z: -80.0
     pitch: 0.0
     yaw: 0.0
   spawning: {}
@@ -101,11 +101,11 @@ world_nether:
   pvp: true
   respawn-world: ''
   scale: 8.0
-  seed: -3964870281413135033
+  seed: 8013565057570832439
   spawn-location:
     ==: MVSpawnLocation
-    x: 6.0
-    y: 35.0
+    x: 0.0
+    y: 128.0
     z: 0.0
     pitch: 0.0
     yaw: 0.0
@@ -139,11 +139,11 @@ world_the_end:
   pvp: true
   respawn-world: ''
   scale: 1.0
-  seed: -3964870281413135033
+  seed: 8013565057570832439
   spawn-location:
     ==: MVSpawnLocation
     x: 0.0
-    y: 58.0
+    y: 62.0
     z: 0.0
     pitch: 0.0
     yaw: 0.0
