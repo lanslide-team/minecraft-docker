@@ -8,5 +8,6 @@ COPY --chown=mc:mc bukkit.yml commands.yml ./
 COPY --chown=mc:mc worlds/plotworld/ ./worlds/plotworld/
 COPY --chown=mc:mc plugins/ ./plugins/
 
-USER mc
+RUN chown mc:mc /mc -R
+
 ENTRYPOINT ["./entrypoint.sh"]
