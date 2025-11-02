@@ -5,8 +5,7 @@ FROM ghcr.io/lanslide-team/minecraft-base:v${MC_VERSION}
 WORKDIR /mc
 
 COPY plugins/ ./plugins/
-USER root
-RUN chown -R mc:mc /mc
-USER mc
+
+RUN chown mc:mc /mc -R
 
 ENTRYPOINT ["./entrypoint.sh"]

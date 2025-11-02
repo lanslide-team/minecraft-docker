@@ -65,7 +65,7 @@ RCON_PORT="${RCON_PORT:-25575}"
 MOTD="${MOTD:-Welcome to the Minecraft Server}"
 SPAWN_PROTECTION="${SPAWN_PROTECTION:-4}"
 MAP_URL="${MAP_URL:-}"
-ZIP_FOLDER="${ZIP_FOLDER:-}"
+FRESH_WORLD="${FRESH_WORLD:-false}"
 
 # Memory/JVM handling
 MEMORY="${MEMORY:-6G}"
@@ -126,12 +126,10 @@ set_prop "hardcore"                      "$HARDCORE"
 set_prop "enable-command-block"          "$ENABLE_COMMAND_BLOCK"
 set_prop "max-players"                   "$MAX_PLAYERS"
 set_prop "network-compression-threshold" "$NETWORK_COMPRESSION_THRESHOLD"
-set_prop "resource-pack-sha1"            "$RESOURCE_PACK_SHA1"
 set_prop "max-world-size"                "$MAX_WORLD_SIZE"
 set_prop "spawn-npcs"                    "$SPAWN_NPCS"
 set_prop "allow-flight"                  "$ALLOW_FLIGHT"
 set_prop "view-distance"                 "$VIEW_DISTANCE"
-set_prop "resource-pack"                 "$RESOURCE_PACK"
 set_prop "spawn-animals"                 "$SPAWN_ANIMALS"
 set_prop "white-list"                    "$WHITE_LIST"
 set_prop "generate-structures"           "$GENERATE_STRUCTURES"
@@ -146,6 +144,13 @@ set_prop "rcon.port"                     "$RCON_PORT"
 set_prop "spawn-protection"              "$SPAWN_PROTECTION"
 set_prop "max-tick-time"                 "$MAX_TICK_TIME"
 
+if [ "$RESOURCE_PACK" != "" ]; then
+  RESOURCE_SHA1=$(wget -qO- "$RESOURCE_PACK" --no-check-certificate | sha1sum | awk '{print $1}')
+  set_prop "resource-pack" "$RESOURCE_PACK"
+  set_prop "require-resource-pack" "true"
+  set_prop "resource-pack-sha1" "$RESOURCE_SHA1"
+fi
+
 echo "----- server.properties -----"
 cat "$CFG" || true
 echo "-----------------------------"
@@ -155,24 +160,40 @@ if [ ! -f "$JAR" ]; then
   exit 2
 fi
 
+echo "FRESH WORLD ${FRESH_WORLD}"
+if [ "$FRESH_WORLD" = True ]; then
+  if [ -d worlds/plotworld ]; then
+    echo "DELETING OLD PLOTWORLD! /mc/plotworld"
+    rm -rf /mc/plotworld/*
+  else
+    echo "DELETING OLD WORLD! /mc/world"
+    rm -rf /mc/world/*
+  fi
+fi
+
+# Handle custom download
 if [ -n "$MAP_URL" ]; then
-    echo "Downloading world from $MAP_URL..."
-    wget -O download.zip "$MAP_URL" --no-check-certificate  && \
-    unzip -q download.zip
+    mkdir -p world
 
-    # Find the folder containing level.dat (the actual world root)
-    WORLD_FOLDER=$(find . -type f -name "level.dat" -exec dirname {} \; | head -n 1)
+    # check if the world directory is empty
+    if [ -z "$(ls -A /mc/world 2>/dev/null)" ]; then
+      echo "Downloading world from $MAP_URL..."
+      wget -O download.zip "$MAP_URL" --no-check-certificate  && \
+      unzip -q download.zip
 
-    if [ -n "$WORLD_FOLDER" ] && [ -d "$WORLD_FOLDER" ]; then
-        rm -rf world
-        mv "$WORLD_FOLDER" world
-        echo "World moved to ./world"
-    else
+      # Find the folder containing level.dat (the actual world root)
+      WORLD_FOLDER=$(unzip -l download.zip | awk '/level\.dat$/ {print $4}' | sed 's|/[^/]*$||' | head -n 1)
+
+      if [ -n "$WORLD_FOLDER" ] && [ -d "$WORLD_FOLDER" ]; then
+        cp -R "$WORLD_FOLDER"/* world/
+        echo "World [$WORLD_FOLDER] moved to ./world"
+      else
         echo "Error: Could not find a folder containing level.dat"
         exit 1
-    fi
+      fi
 
-    rm -rf download.zip
+      rm -rf download.zip
+    fi
 fi
 
 if [ -d worlds/plotworld ]; then
