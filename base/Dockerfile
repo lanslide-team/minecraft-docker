@@ -38,12 +38,16 @@ LABEL org.opencontainers.image.title="Spigot Base" \
       org.opencontainers.image.version="${MC_VERSION}" \
       maintainer="LAN-slide"
 
+ARG PUID=1000
+ARG PGID=1000
+
 # Create non-root user & directories
-RUN useradd -m -s /bin/bash mc && \
-    mkdir -p /mc && chown -R mc:mc /mc && \
+RUN usermod -l mc ubuntu && \
+    groupmod -n mc ubuntu && \
+    mkdir -p /mc && chown -R $PUID:$PGID /mc && \
     apt-get update && apt-get install -y --no-install-recommends \
-      bash iproute2 sed gawk python3 unzip \
-    && rm -rf /var/lib/apt/lists/*
+        bash iproute2 sed gawk python3 unzip; \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /mc
 
@@ -57,6 +61,4 @@ RUN chmod +x /mc/entrypoint.sh
 
 HEALTHCHECK --interval=30s --timeout=3s --retries=20 CMD bash -lc 'ss -lnt | grep -q ":25565"'
 
-USER mc
 ENTRYPOINT ["/mc/entrypoint.sh"]
-
