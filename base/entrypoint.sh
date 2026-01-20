@@ -182,7 +182,7 @@ if [ -n "$MAP_URL" ]; then
       unzip -q download.zip
 
       # Find the folder containing level.dat (the actual world root)
-      WORLD_FOLDER=$(unzip -l download.zip | awk '/level\.dat$/ {print $4}' | sed 's|/[^/]*$||' | head -n 1)
+      WORLD_FOLDER=$(unzip -l download.zip | awk '/level\.dat$/ { sub(/^([^ ]+[ ]+){3}/,""); print }' | sed 's|/[^/]*$||' | head -n 1)
 
       if [ -n "$WORLD_FOLDER" ] && [ -d "$WORLD_FOLDER" ]; then
         cp -R "$WORLD_FOLDER"/* world/
