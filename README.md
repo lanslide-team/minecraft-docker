@@ -3,6 +3,28 @@
 This repository provides versioned Docker images for running **Spigot-based Minecraft servers**, maintained by [LAN-slide](https://github.com/lanslide-team).  
 Each Minecraft version is kept in its own branch (for example, `v1.21.10`, `v1.22.0`) as a **known-good build**, pinned to matching Spigot and Java versions.
 
+Guide
+- Run ./new-version.sh to update to the new version
+- Run ./plugin.py to update the plugins
+- Update the dependencies (minecraft-docker/build/DockerFile) and (minecraft-docker/map/DockerFile) to point to local
+- Run ./build-local.sh
+- Run ./build-plugin-config.sh
+- Re-Run ./build-local.sh
+- Test it (see below)
+- Once tested, change dependenies back and push to live.
+
+```text
+docker run \
+  --name test \
+  -v ./build/plugins:/mc/plugins \
+  minecraft-build:v1.21.11
+
+docker run \
+  --name test \
+  -v ./map/plugins:/mc/plugins \
+  minecraft-map:v1.21.11
+```
+
 ---
 
 ## 🏗️ Repository Structure 

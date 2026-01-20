@@ -1,4 +1,4 @@
-ARG MC_VERSION=1.21.10
+ARG MC_VERSION=1.21.11
 ARG JAVA_MAJOR=21
 
 # ---------- Build Stage ----------

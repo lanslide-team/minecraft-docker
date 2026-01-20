@@ -25,15 +25,55 @@ plotworld:
   pvp: true
   respawn-world: ''
   scale: 1.0
-  seed: 875474621638932748
+  seed: 877062947467841107
   spawn-location:
     ==: MVSpawnLocation
-    x: 0.0
+    x: -16.0
     y: 63.0
-    z: 0.0
+    z: -16.0
     pitch: 0.0
     yaw: 0.0
-  spawning: {}
+  spawning:
+    monster:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    animal:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_animal:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_ambient:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_underground_creature:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    ambient:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    axolotl:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    misc:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
   world-blacklist: []
   version: 1.2
 world:
@@ -63,15 +103,55 @@ world:
   pvp: true
   respawn-world: ''
   scale: 1.0
-  seed: 8590849142502001076
+  seed: -5351685664760870239
   spawn-location:
     ==: MVSpawnLocation
-    x: -16.0
-    y: 76.0
-    z: -48.0
+    x: 96.0
+    y: 85.0
+    z: -32.0
     pitch: 0.0
     yaw: 0.0
-  spawning: {}
+  spawning:
+    monster:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    animal:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_animal:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_ambient:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_underground_creature:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    ambient:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    axolotl:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    misc:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
   world-blacklist: []
   version: 1.2
 world_nether:
@@ -101,7 +181,7 @@ world_nether:
   pvp: true
   respawn-world: ''
   scale: 8.0
-  seed: 8590849142502001076
+  seed: -5351685664760870239
   spawn-location:
     ==: MVSpawnLocation
     x: 0.0
@@ -109,7 +189,47 @@ world_nether:
     z: 0.0
     pitch: 0.0
     yaw: 0.0
-  spawning: {}
+  spawning:
+    monster:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    animal:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_animal:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_ambient:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_underground_creature:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    ambient:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    axolotl:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    misc:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
   world-blacklist: []
   version: 1.2
 world_the_end:
@@ -139,14 +259,54 @@ world_the_end:
   pvp: true
   respawn-world: ''
   scale: 1.0
-  seed: 8590849142502001076
+  seed: -5351685664760870239
   spawn-location:
     ==: MVSpawnLocation
     x: 0.0
-    y: 63.0
+    y: 64.0
     z: 0.0
     pitch: 0.0
     yaw: 0.0
-  spawning: {}
+  spawning:
+    monster:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    animal:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_animal:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_ambient:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    water_underground_creature:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    ambient:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    axolotl:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
+    misc:
+      spawn: true
+      tick-rate: '@unset'
+      spawn-limit: '@unset'
+      exceptions: []
   world-blacklist: []
   version: 1.2
