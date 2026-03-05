@@ -6,7 +6,7 @@ FROM eclipse-temurin:${JAVA_MAJOR}-jdk AS build
 ARG MC_VERSION
 ENV MC_VERSION=${MC_VERSION}
 
-WORKDIR /build 
+WORKDIR /build
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
