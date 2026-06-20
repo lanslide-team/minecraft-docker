@@ -5,7 +5,7 @@
 # anonymous.
 
 enabled: true
-serverUuid: 3d436d4d-04cf-4664-83f5-cb4899f585aa
+serverUuid: dfae30f1-dad2-4001-9163-76ef44697f46
 logFailedRequests: false
 logSentData: false
 logResponseStatusText: false

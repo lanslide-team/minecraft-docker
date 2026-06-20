@@ -1,4 +1,4 @@
-ARG MC_VERSION=1.21.11
+ARG MC_VERSION=26.2
 FROM ghcr.io/lanslide-team/minecraft-base:v${MC_VERSION}
 #FROM minecraft-base:v${MC_VERSION}
 

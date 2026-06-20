@@ -1,5 +1,5 @@
-ARG MC_VERSION=1.21.11
-ARG JAVA_MAJOR=21
+ARG MC_VERSION=26.2
+ARG JAVA_MAJOR=26
 
 # ---------- Build Stage ----------
 FROM eclipse-temurin:${JAVA_MAJOR}-jdk AS build

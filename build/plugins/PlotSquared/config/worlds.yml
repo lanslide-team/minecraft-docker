@@ -28,11 +28,11 @@ worlds:
       default: side
     world:
       component_below_bedrock: false
-      max_gen_height: 319
-      max_height: 320
+      max_gen_height: 255
+      max_height: 256
       gamemode: creative
-      min_gen_height: -64
-      min_height: -63
+      min_gen_height: 0
+      min_height: 1
       border_size: 1
       border: false
     schematic:

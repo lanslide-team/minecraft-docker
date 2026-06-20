@@ -163,7 +163,7 @@ metrics:
   # If metrics should be enabled
   enabled: true
   # UUID of server, don't change!
-  uuid: a691a206-5092-4166-b358-664ae13f6e9b
+  uuid: 3ef84d28-a1fd-4610-835f-e8d0a8d363e2
 # ADVANCED OPTIONS - DO NOT TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING!
 
 # Geyser updates the Scoreboard after every Scoreboard packet, but when Geyser tries to handle
