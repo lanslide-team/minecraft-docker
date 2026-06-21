@@ -6,6 +6,11 @@ Each Minecraft version is kept in its own branch (for example, `v1.21.10`, `v1.2
 Guide
 - Run ./new-version.sh to update to the new version
 - Run ./plugin.py to update the plugins
+- Manually download latest versions
+  - https://www.spigotmc.org/resources/essentialsx.9089/
+  - https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot [or discord]
+  - https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot
+  - https://www.spigotmc.org/resources/plotsquared-v7.77506/
 - Update the dependencies (minecraft-docker/build/DockerFile) and (minecraft-docker/map/DockerFile) to point to local
 - Run ./build-local.sh
 - Run ./build-plugin-config.sh

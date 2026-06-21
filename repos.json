@@ -10,8 +10,12 @@
     "https://modrinth.com/plugin/essentialsx",
     "https://github.com/EssentialsX/Essentials"
   ],
+  "floodgate": [],
   "geyser": [
     "https://modrinth.com/plugin/geyser"
+  ],
+  "geyserupdater": [
+    "https://modrinth.com/plugin/geyser-and-floodgate-auto-uploader"
   ],
   "joincommands": [
     "https://hangar.papermc.io/SirBlobman/JoinCommands"
@@ -31,6 +35,9 @@
   "vault": [
     "https://modrinth.com/plugin/vaultplugin",
     "https://github.com/MilkBowl/Vault"
+  ],
+  "viaversion": [
+    "https://github.com/ViaVersion/ViaVersion"
   ],
   "worldborder": [
     "https://github.com/PryPurity/WorldBorder"
