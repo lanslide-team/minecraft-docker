@@ -173,7 +173,7 @@ fi
 
 # Handle custom download
 if [ -n "$MAP_URL" ]; then
-    mkdir -p world
+    mkdir -p /mc/world
 
     # check if the world directory is empty
     if [ -z "$(ls -A /mc/world 2>/dev/null)" ]; then
@@ -182,10 +182,17 @@ if [ -n "$MAP_URL" ]; then
       unzip -q download.zip
 
       # Find the folder containing level.dat (the actual world root)
-      WORLD_FOLDER=$(unzip -l download.zip | awk '/level\.dat$/ { sub(/^([^ ]+[ ]+){3}/,""); print }' | sed 's|/[^/]*$||' | head -n 1)
+      WORLD_FOLDER=$(unzip -l download.zip \
+        | awk '$4 ~ /level\.dat$/ {print $4}' \
+        | sed 's|/level\.dat$||' \
+        | head -n 1)
+      echo "WORLD_FOLDER [$WORLD_FOLDER]"
 
       if [ -n "$WORLD_FOLDER" ] && [ -d "$WORLD_FOLDER" ]; then
-        cp -R "$WORLD_FOLDER"/* world/
+        cp -R "$WORLD_FOLDER"/* /mc/world/
+        rm -rf /mc/world/filefix
+        rm -rf /mc/world/upgraded
+
         echo "World [$WORLD_FOLDER] moved to ./world"
       else
         echo "Error: Could not find a folder containing level.dat"
@@ -205,4 +212,7 @@ if [ -d worlds/plotworld ]; then
 fi
 
 echo "Starting Spigot for Minecraft ${MC_VERSION:-unknown} (Xms=${XMS}, Xmx=${XMX})..."
-exec java ${JVM_OPTS} -Xms"${XMS}" -Xmx"${XMX}" -jar "${JAR}" nogui
+set +e
+java ${JVM_OPTS} -Xms"${XMS}" -Xmx"${XMX}" -jar "${JAR}" nogui
+echo "Minecraft crashed. Dropping to shell..."
+exec bash
