@@ -149,6 +149,10 @@ if [ "$RESOURCE_PACK" != "" ]; then
   set_prop "resource-pack" "$RESOURCE_PACK"
   set_prop "require-resource-pack" "true"
   set_prop "resource-pack-sha1" "$RESOURCE_SHA1"
+else
+  set_prop "resource-pack" ""
+  set_prop "require-resource-pack" "false"
+  set_prop "resource-pack-sha1" ""
 fi
 
 echo "----- server.properties -----"
