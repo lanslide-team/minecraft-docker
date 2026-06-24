@@ -104,7 +104,7 @@ set_prop() {
 # ------------------------------------------------------------
 # Write ALL corresponding server.properties keys
 # ------------------------------------------------------------
-set_prop "server-name"			 "$HOSTNAME"
+set_prop "server-name"			             "$HOSTNAME"
 set_prop "motd"                          "$MOTD"
 set_prop "level-name"                    "$LEVEL_NAME"
 set_prop "server-port"                   "$SERVER_PORT"
@@ -159,6 +159,8 @@ echo "----- server.properties -----"
 cat "$CFG" || true
 echo "-----------------------------"
 
+yq -y -i '.motd."secondary-motd" = env.MOTD' "${MC_DIR}/plugins/Geyser-Spigot/config.yml"
+
 if [ ! -f "$JAR" ]; then
   echo "Missing ${JAR}. Did the base image build succeed?" >&2
   exit 2
@@ -194,9 +196,6 @@ if [ -n "$MAP_URL" ]; then
 
       if [ -n "$WORLD_FOLDER" ] && [ -d "$WORLD_FOLDER" ]; then
         cp -R "$WORLD_FOLDER"/* /mc/world/
-        rm -rf /mc/world/filefix
-        rm -rf /mc/world/upgraded
-
         echo "World [$WORLD_FOLDER] moved to ./world"
       else
         echo "Error: Could not find a folder containing level.dat"

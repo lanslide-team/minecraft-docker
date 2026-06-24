@@ -2,6 +2,8 @@ ARG MC_VERSION=26.2
 FROM ghcr.io/lanslide-team/minecraft-base:v${MC_VERSION}
 #FROM minecraft-base:v${MC_VERSION}
 
+RUN apt-get update && apt-get install -y yq
+
 WORKDIR /mc
 
 COPY --chown=mc:mc bukkit.yml commands.yml ./
