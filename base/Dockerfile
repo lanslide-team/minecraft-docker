@@ -62,6 +62,7 @@ COPY --from=build /usr/local/bin/mcrcon /usr/local/bin/mcrcon
 
 # Entrypoint + optional helpers (present in your repo)
 COPY --chown=mc:mc advertise.py entrypoint.sh server.properties /mc/
+COPY --chown=mc:mc config /mc/config/
 RUN chmod +x /mc/entrypoint.sh
 
 HEALTHCHECK --interval=30s --timeout=3s --retries=20 CMD bash -lc 'ss -lnt | grep -q ":25565"'
