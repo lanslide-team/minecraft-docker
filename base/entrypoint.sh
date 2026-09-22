@@ -3,7 +3,7 @@ set -euo pipefail
 
 MC_DIR="/mc"
 CFG="${MC_DIR}/server.properties"
-JAR="${MC_DIR}/spigot.jar"
+JAR="${MC_DIR}/paper.jar"
 PLUGINS_DIR="${MC_DIR}/plugins"
 HOSTNAME="${HOSTNAME:-Minecraft Server}"
 
@@ -71,7 +71,7 @@ FRESH_WORLD="${FRESH_WORLD:-false}"
 MEMORY="${MEMORY:-6G}"
 XMS="${XMS:-$MEMORY}"
 XMX="${XMX:-$MEMORY}"
-JVM_OPTS="${JVM_OPTS:--XX:+UseG1GC -Dfile.encoding=UTF-8}"
+JVM_OPTS="${JVM_OPTS:--XX:+UseG1GC -Dfile.encoding=UTF-8 -Dpaper.disableMigrationDelay=true}"
 
 # EULA (required)
 EULA="${EULA:-TRUE}"
@@ -159,7 +159,9 @@ echo "----- server.properties -----"
 cat "$CFG" || true
 echo "-----------------------------"
 
-yq -y -i '.motd."secondary-motd" = env.MOTD' "${MC_DIR}/plugins/Geyser-Spigot/config.yml"
+if [ -f ${MC_DIR}/plugins/Geyser-Spigot/config.yml ]; then
+  yq -y -i '.motd."secondary-motd" = env.MOTD' "${MC_DIR}/plugins/Geyser-Spigot/config.yml"
+fi
 
 if [ ! -f "$JAR" ]; then
   echo "Missing ${JAR}. Did the base image build succeed?" >&2
@@ -170,7 +172,8 @@ echo "FRESH WORLD ${FRESH_WORLD}"
 if [ "$FRESH_WORLD" = True ]; then
   if [ -d worlds/plotworld ]; then
     echo "DELETING OLD PLOTWORLD! /mc/plotworld"
-    rm -rf /mc/plotworld/*
+    rm -rf /mc/plotworld/dimensions/minecraft/overworld/entities/*
+    rm -rf /mc/plotworld/dimensions/minecraft/overworld/region/*
   else
     echo "DELETING OLD WORLD! /mc/world"
     rm -rf /mc/world/*
@@ -214,7 +217,7 @@ if [ -d worlds/plotworld ]; then
     fi
 fi
 
-echo "Starting Spigot for Minecraft ${MC_VERSION:-unknown} (Xms=${XMS}, Xmx=${XMX})..."
+echo "Starting Paper for Minecraft ${MC_VERSION:-unknown} (Xms=${XMS}, Xmx=${XMX})..."
 set +e
 java ${JVM_OPTS} -Xms"${XMS}" -Xmx"${XMX}" -jar "${JAR}" nogui
 echo "Minecraft crashed. Dropping to shell..."

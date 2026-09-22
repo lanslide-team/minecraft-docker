@@ -1,16 +1,17 @@
 # 🧩 Minecraft Docker Images (LAN-slide)
 
-This repository provides versioned Docker images for running **Spigot-based Minecraft servers**, maintained by [LAN-slide](https://github.com/lanslide-team).  
-Each Minecraft version is kept in its own branch (for example, `v1.21.10`, `v1.22.0`) as a **known-good build**, pinned to matching Spigot and Java versions.
+This repository provides versioned Docker images for running **Paper-based Minecraft servers**, maintained by [LAN-slide](https://github.com/lanslide-team).  
+Each Minecraft version is kept in its own branch (for example, `v1.21.10`, `v1.22.0`) as a **known-good build**, pinned to matching Paper and Java versions.
 
 Guide
 - Run ./new-version.sh to update to the new version
 - Run ./plugin.py to update the plugins
 - Manually download latest versions
-  - https://www.spigotmc.org/resources/essentialsx.9089/
-  - https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot [or discord]
-  - https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot
+  - https://hangar.papermc.io/EssentialsX/Essentials
+  - https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot [or discord] [optional]
+  - https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot [optional]
   - https://www.spigotmc.org/resources/plotsquared-v7.77506/
+  - https://www.spigotmc.org/resources/worldborder-renew-1-18-x-1-21-x.126588/
 - Update the dependencies (minecraft-docker/build/DockerFile) and (minecraft-docker/map/DockerFile) to point to local
 - Run ./build-local.sh
 - Run ./build-plugin-config.sh
@@ -36,13 +37,13 @@ docker run \
 
 ```text
 minecraft-docker/
-├── base/    → Base Spigot server (no plugins)
+├── base/    → Base Paper server (no plugins)
 ├── build/   → Variant image with plotworld
 ├── map/     → Variant image with preloaded world/map
 └── .github/ → CI workflow (auto-builds to GHCR)
 ```
 
-- **`base/`** – compiles Spigot for the target Minecraft version using [BuildTools](https://www.spigotmc.org/wiki/buildtools/).  
+- **`base/`** – compiles Paper for the target Minecraft version.  
 - **`build/`** – extends the base image with plugins or server packs (e.g. EssentialsX, LuckPerms).  
 - **`map/`** – extends the base image with a pre-generated world or event map.  
 - **`.github/workflows/publish.yml`** – automatically builds and pushes all three images to [GHCR](https://ghcr.io) when a `v*` branch is pushed.
@@ -95,7 +96,7 @@ docker build -t ghcr.io/lanslide-team/minecraft-map:v1.21.10 ./map
 Run the server
 ```bash
 docker run -d \
-  --name spigot_1218 \
+  --name paper_1218 \
   --network mc-macvlan --ip 192.168.1.50 \
   -e MOTD="LAN-slide Minecraft 1.21.10" \
   -v /srv/minecraft/1.21.10:/mc \

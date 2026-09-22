@@ -1,8 +1,8 @@
-ARG MC_VERSION=26.2
+ARG MC_VERSION=26.3
 FROM ghcr.io/lanslide-team/minecraft-base:v${MC_VERSION}
 #FROM minecraft-base:v${MC_VERSION}
 
-RUN apt-get update && apt-get install -y wget yq
+#RUN apt-get update && apt-get install -y wget yq
 
 WORKDIR /mc
 

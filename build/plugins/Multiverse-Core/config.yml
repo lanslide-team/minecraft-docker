@@ -56,6 +56,10 @@ world:
   world-name-format:
     nether: '%overworld%_nether'
     end: '%overworld%_the_end'
+  # Sets whether Multiverse will warn about alias duplicates when adding worlds or modifying aliases.
+  # Although not enforced, it is highly recommended to not have multiple worlds with the same alias or
+  # alias matching another world's name as it can cause confusion during world listing and selection in commands.
+  warn-alias-conflicts: true
 teleport:
   # Sets whether Multiverse will use more fine-grained teleport permissions.
   # ----

@@ -1,4 +1,4 @@
-ARG MC_VERSION=26.2
+ARG MC_VERSION=26.3
 ARG JAVA_MAJOR=26
 
 # ---------- Build Stage ----------
@@ -10,7 +10,7 @@ WORKDIR /build
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      git curl ca-certificates build-essential pkg-config && \
+      git curl ca-certificates build-essential pkg-config jq && \
     rm -rf /var/lib/apt/lists/*
 
 # Build mcrcon (optional RCON CLI tool)
@@ -18,14 +18,19 @@ RUN git clone --depth=1 https://github.com/Tiiffi/mcrcon.git /tmp/mcrcon && \
     make -C /tmp/mcrcon && strip /tmp/mcrcon/mcrcon && \
     mv /tmp/mcrcon/mcrcon /usr/local/bin/mcrcon && rm -rf /tmp/mcrcon
 
-# Build Spigot for this exact Minecraft version
-RUN curl -L -o BuildTools.jar \
-      https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && \
-    git config --global --add safe.directory /build && \
-    java -jar BuildTools.jar --rev ${MC_VERSION}
+RUN USER_AGENT="LAN-slide-Minecraft-Server/1.0 (https://lanslide.com.au)" && \
+    PAPER_URL=$(curl -fsSL \
+      -H "User-Agent: ${USER_AGENT}" \
+      "https://fill.papermc.io/v3/projects/paper/versions/${MC_VERSION}/builds" \
+      | jq -r '.[0].downloads."server:default".url') && \
+    echo "Downloading Paper ${MC_VERSION}: ${PAPER_URL}" && \
+    test "${PAPER_URL}" != "null" && \
+    curl -fsSL \
+      -H "User-Agent: ${USER_AGENT}" \
+      -o /build/paper.jar \
+      "${PAPER_URL}"
 
-# Verify build success
-RUN test -f /build/spigot-*.jar || (echo "spigot-${MC_VERSION}.jar not found" && ls -al && exit 1)
+RUN test -s /build/paper.jar || (echo "Paper ${MC_VERSION} download failed" && exit 1)
 
 # ---------- Runtime Stage ----------
 FROM eclipse-temurin:${JAVA_MAJOR}-jre
@@ -34,7 +39,7 @@ FROM eclipse-temurin:${JAVA_MAJOR}-jre
 ARG MC_VERSION
 ENV MC_VERSION=${MC_VERSION}
 
-LABEL org.opencontainers.image.title="Spigot Base" \
+LABEL org.opencontainers.image.title="Paper Base" \
       org.opencontainers.image.version="${MC_VERSION}" \
       maintainer="LAN-slide"
 
@@ -46,13 +51,13 @@ RUN usermod -l mc ubuntu && \
     groupmod -n mc ubuntu && \
     mkdir -p /mc && chown -R $PUID:$PGID /mc && \
     apt-get update && apt-get install -y --no-install-recommends \
-        bash iproute2 sed gawk python3 unzip; \
+        bash iproute2 sed gawk python3 unzip wget yq && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /mc
 
 # Copy artifacts from build stage
-COPY --from=build /build/spigot-*.jar /mc/spigot.jar
+COPY --from=build /build/paper*.jar /mc/paper.jar
 COPY --from=build /usr/local/bin/mcrcon /usr/local/bin/mcrcon
 
 # Entrypoint + optional helpers (present in your repo)
