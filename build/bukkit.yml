@@ -53,3 +53,6 @@ worlds:
 worlds:
   plotworld:
     generator: PlotSquared
+worlds:
+  plotworld:
+    generator: PlotSquared
