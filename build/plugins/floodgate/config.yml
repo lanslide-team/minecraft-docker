@@ -60,7 +60,7 @@ player-link:
 
 metrics:
   enabled: true
-  uuid: d069a01e-47cc-4639-a409-2c68a35f5bfc
+  uuid: 6abfc1e1-9b5f-40ec-a26e-89b0bf262a68
 
 # Do not change this
 config-version: 3
