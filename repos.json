@@ -32,6 +32,10 @@
   "protocollib": [
     "https://github.com/dmulloy2/ProtocolLib"
   ],
+  "screamingbedwars": [
+    "https://github.com/ScreamingSandals/BedWars",
+    "https://modrinth.com/plugin/screamingbedwars"
+  ],
   "vault": [
     "https://github.com/MilkBowl/Vault"
   ],

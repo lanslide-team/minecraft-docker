@@ -258,3 +258,13 @@ if [[ "${ENABLE_RCON,,}" == "true" ]] && [ -f /mc/settings.sh ]; then
 fi
 
 wait "$SERVER_PID"
+EXIT_CODE=$?
+
+echo "Minecraft server exited with code: $EXIT_CODE"
+
+if [ "$EXIT_CODE" -ne 0 ]; then
+    echo "Minecraft crashed! Dropping into /bin/bash for debugging..."
+    exec /bin/bash
+fi
+
+exit "$EXIT_CODE"

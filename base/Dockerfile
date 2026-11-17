@@ -51,7 +51,7 @@ RUN usermod -l mc ubuntu && \
     groupmod -n mc ubuntu && \
     mkdir -p /mc && chown -R $PUID:$PGID /mc && \
     apt-get update && apt-get install -y --no-install-recommends \
-        bash iproute2 sed gawk python3 unzip wget yq && \
+        bash iproute2 sed gawk python3 unzip wget yq vim && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /mc

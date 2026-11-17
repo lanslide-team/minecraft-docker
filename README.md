@@ -12,7 +12,7 @@ Guide
   - https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot [optional]
   - https://www.spigotmc.org/resources/plotsquared-v7.77506/
   - https://www.spigotmc.org/resources/worldborder-renew-1-18-x-1-21-x.126588/
-- Update the dependencies (minecraft-docker/build/DockerFile) and (minecraft-docker/map/DockerFile) to point to local
+- Update the dependencies (minecraft-docker/bedwars/DockerFile), (minecraft-docker/build/DockerFile) and (minecraft-docker/map/DockerFile) to point to local
 - Run ./build-local.sh
 - Run ./build-plugin-config.sh
 - Re-Run ./build-local.sh
