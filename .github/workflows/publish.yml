@@ -1,3 +1,4 @@
+
 name: Build & Publish Minecraft Images
 
 on:
@@ -30,9 +31,8 @@ jobs:
         id: version
         run: |
           BRANCH="${GITHUB_REF##*/}"
-          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
-          # Strip leading 'v' → 1.21.8
-          echo "mc_version=${BRANCH#v}" >> $GITHUB_OUTPUT
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "mc_version=${BRANCH#v}" >> "$GITHUB_OUTPUT"
           echo "Minecraft version: ${BRANCH#v}"
 
       - name: Log in to GHCR
@@ -45,39 +45,54 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      # --------------------------------------------------
+      # Base image - always download latest Paper build
+      # --------------------------------------------------
       - name: Build & Push Base image
         uses: docker/build-push-action@v6
         with:
           context: ./base
           push: true
+          no-cache-filters: |
+            build
+          build-args: |
+            MC_VERSION=${{ steps.version.outputs.mc_version }}
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.BASE_NAME }}:${{ steps.version.outputs.branch }}
           labels: |
             org.opencontainers.image.title=Minecraft Base
             org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-      
-      - name: Build & Push Bedwars variant
+          cache-from: type=gha,scope=base
+          cache-to: type=gha,mode=max,scope=base
+
+      # --------------------------------------------------
+      # BedWars variant
+      # --------------------------------------------------
+      - name: Build & Push BedWars variant
         uses: docker/build-push-action@v6
         with:
           context: ./bedwars
           push: true
+          pull: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.BEDWARS_NAME }}:${{ steps.version.outputs.branch }}
           build-args: |
             BASE_TAG=${{ steps.version.outputs.branch }}
           labels: |
-            org.opencontainers.image.title=Minecraft Bedwars
+            org.opencontainers.image.title=Minecraft BedWars
             org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=bedwars
+          cache-to: type=gha,mode=max,scope=bedwars
 
+      # --------------------------------------------------
+      # Build variant
+      # --------------------------------------------------
       - name: Build & Push Build variant
         uses: docker/build-push-action@v6
         with:
           context: ./build
           push: true
+          pull: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.BUILD_NAME }}:${{ steps.version.outputs.branch }}
           build-args: |
@@ -85,14 +100,18 @@ jobs:
           labels: |
             org.opencontainers.image.title=Minecraft Build
             org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=build
+          cache-to: type=gha,mode=max,scope=build
 
+      # --------------------------------------------------
+      # Map variant
+      # --------------------------------------------------
       - name: Build & Push Map variant
         uses: docker/build-push-action@v6
         with:
           context: ./map
           push: true
+          pull: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.MAP_NAME }}:${{ steps.version.outputs.branch }}
           build-args: |
@@ -100,5 +119,5 @@ jobs:
           labels: |
             org.opencontainers.image.title=Minecraft Map
             org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=map
+          cache-to: type=gha,mode=max,scope=map

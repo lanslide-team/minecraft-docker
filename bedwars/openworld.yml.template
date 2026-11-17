@@ -1,179 +1,179 @@
-name: openworld
-pauseCountdown: 30
-gameTime: 1800
+name: $ARENA_NAME
+pauseCountdown: $PAUSE_COUNTDOWN
+gameTime: $GAME_TIME
 world: world
 pos1: -85.0;-35.0;-85.0;-45.0;-20.0
 pos2: 85.0;70.0;85.0;135.0;30.0
 specSpawn: 43.0;6.0;43.0;135.0;0.0
 lobbySpawn: 0.0;18.0;0.0;0.0;0.0
 lobbySpawnWorld: world
-minPlayers: 2
-postGameWaiting: 3
+minPlayers: $MIN_PLAYERS
+postGameWaiting: $POST_GAME_WAITING
 teams:
-  Ignis:
+  $TEAM1_NAME:
     isNewColor: true
-    color: RED
-    maxPlayers: 8
+    color: $TEAM1_COLOR
+    maxPlayers: $TEAM1_MAX_PLAYERS
     bed: -54.1;0.0;0.0;-90.0;90.0
     spawn: -65.0;0.0;0.0;-90.0;10.0
-    actualName: Ignis
-  Aqua:
+    actualName: $TEAM1_NAME
+  $TEAM2_NAME:
     isNewColor: true
-    color: BLUE
-    maxPlayers: 8
+    color: $TEAM2_COLOR
+    maxPlayers: $TEAM2_MAX_PLAYERS
     bed: 0.0;0.0;54.9;180.0;90.0
     spawn: 0.0;0.0;65.0;180.0;10.0
-    actualName: Aqua
-  Terra:
+    actualName: $TEAM2_NAME
+  $TEAM3_NAME:
     isNewColor: true
-    color: GREEN
-    maxPlayers: 8
+    color: $TEAM3_COLOR
+    maxPlayers: $TEAM3_MAX_PLAYERS
     bed: 54.9;0.0;0.0;90.0;90.0
     spawn: 65.0;0.0;0.0;90.0;10.0
-    actualName: Terra
-  Ventus:
+    actualName: $TEAM3_NAME
+  $TEAM4_NAME:
     isNewColor: true
-    color: YELLOW
-    maxPlayers: 8
+    color: $TEAM4_COLOR
+    maxPlayers: $TEAM4_MAX_PLAYERS
     bed: 0.0;0.0;-54.1;0.0;90.0
     spawn: 0.0;0.0;-65.0;0.0;10.0
-    actualName: Ventus
+    actualName: $TEAM4_NAME
 spawners:
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: -63.0;0.0;4.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: iron
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 4.0;0.0;63.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: iron
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 63.0;0.0;-4.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: iron
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: -4.0;0.0;-63.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: iron
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: -63.0;0.0;0.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: bronze
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 0.0;0.0;63.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: bronze
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 63.0;0.0;0.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: bronze
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 0.0;0.0;-63.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: bronze
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: -63.0;0.0;-4.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: gold
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: -4.0;0.0;63.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: gold
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 63.0;0.0;4.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: gold
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 4.0;0.0;-63.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: gold
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: -35.0;0.0;0.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: diamond
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 0.0;0.0;35.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: diamond
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 35.0;0.0;0.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: diamond
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 0.0;0.0;-35.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: diamond
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: -14.0;0.0;14.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: emerald
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 14.0;0.0;14.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: emerald
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: 14.0;0.0;-14.0;0.0;0.0
   customName: null
   startLevel: 1.0
   team: null
   type: emerald
-- maxSpawnedResources: -1
-  hologramEnabled: true
+- maxSpawnedResources: $MAX_SPAWNED_RESOURCES
+  hologramEnabled: $HOLOGRAM_ENABLED
   location: -14.0;0.0;-14.0;0.0;0.0
   customName: null
   startLevel: 1.0

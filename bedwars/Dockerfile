@@ -3,12 +3,12 @@ FROM ghcr.io/lanslide-team/minecraft-base:v${MC_VERSION}
 #FROM minecraft-base:v${MC_VERSION}
 
 WORKDIR /mc
+RUN apt-get update && apt-get install -y --no-install-recommends gettext-base && rm -rf /var/lib/apt/lists/*
 
-COPY --chown=mc:mc openworld.yml ./plugins/BedWars/arenas/openworld.yml
+COPY --chown=mc:mc openworld.yml.template ./defaults/openworld.yml.template
 COPY --chown=mc:mc plugins/ ./plugins/
 COPY --chown=mc:mc settings.sh ./
 
-RUN chown mc:mc /mc -R
 RUN chmod +x /mc/settings.sh
 
 ENTRYPOINT ["./entrypoint.sh"]

@@ -7,9 +7,6 @@ JAR="${MC_DIR}/paper.jar"
 PLUGINS_DIR="${MC_DIR}/plugins"
 HOSTNAME="${HOSTNAME:-Minecraft Server}"
 
-# ------------------------------------------------------------
-# Optional background helpers (same behavior as your old script)
-# ------------------------------------------------------------
 mkdir -p "${MC_DIR}"
 if command -v python3 >/dev/null 2>&1; then
   if [ -f "${MC_DIR}/advertise.py" ]; then
@@ -21,9 +18,6 @@ if command -v python3 >/dev/null 2>&1; then
   fi
 fi
 
-# ------------------------------------------------------------
-# Defaults for ALL your old env vars (plus RCON_PORT)
-# ------------------------------------------------------------
 MAX_TICK_TIME="${MAX_TICK_TIME:-60000}"
 GAMEMODE="${GAMEMODE:-creative}"
 GENERATOR_SETTINGS="${GENERATOR_SETTINGS:-}"
@@ -67,27 +61,19 @@ SPAWN_PROTECTION="${SPAWN_PROTECTION:-4}"
 MAP_URL="${MAP_URL:-}"
 FRESH_WORLD="${FRESH_WORLD:-false}"
 
-# Memory/JVM handling
 MEMORY="${MEMORY:-6G}"
 XMS="${XMS:-$MEMORY}"
 XMX="${XMX:-$MEMORY}"
 JVM_OPTS="${JVM_OPTS:--XX:+UseG1GC -Dfile.encoding=UTF-8 -Dpaper.disableMigrationDelay=true}"
 
-# EULA (required)
 EULA="${EULA:-TRUE}"
 
-# ------------------------------------------------------------
-# EULA enforcement
-# ------------------------------------------------------------
 if [ "${EULA^^}" != "TRUE" ]; then
   echo "You must accept the Minecraft EULA. Start with -e EULA=TRUE" >&2
   exit 1
 fi
 echo "eula=true" > "${MC_DIR}/eula.txt"
 
-# ------------------------------------------------------------
-# Safe property setter (creates or updates key=value)
-# ------------------------------------------------------------
 rcon() {
     mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "$@"
 }
@@ -105,10 +91,7 @@ set_prop() {
   fi
 }
 
-# ------------------------------------------------------------
-# Write ALL corresponding server.properties keys
-# ------------------------------------------------------------
-set_prop "server-name"			             "$HOSTNAME"
+set_prop "server-name"                 "$HOSTNAME"
 set_prop "motd"                          "$MOTD"
 set_prop "level-name"                    "$LEVEL_NAME"
 set_prop "server-port"                   "$SERVER_PORT"
@@ -184,7 +167,6 @@ if [ "$FRESH_WORLD" = True ]; then
   fi
 fi
 
-# Handle custom download
 if [ -n "$MAP_URL" ]; then
     mkdir -p /mc/world
 
@@ -219,6 +201,64 @@ if [ -d worlds/plotworld ]; then
         echo "Seeding saved world from default..."
         cp -R worlds/plotworld/* plotworld/
     fi
+fi
+
+BEDWARS_ARENA_TEMPLATE="${BEDWARS_ARENA_TEMPLATE:-${MC_DIR}/defaults/openworld.yml.template}"
+BEDWARS_CONFIG="${PLUGINS_DIR}/BedWars/config.yml"
+
+if [ -f "$BEDWARS_ARENA_TEMPLATE" ]; then
+  : "${ARENA_NAME:=openworld}"
+  : "${PAUSE_COUNTDOWN:=30}"
+  : "${GAME_TIME:=1800}"
+  : "${MIN_PLAYERS:=2}"
+  : "${POST_GAME_WAITING:=3}"
+  : "${TEAM1_NAME:=Ignis}";  : "${TEAM1_COLOR:=RED}";    : "${TEAM1_MAX_PLAYERS:=8}"
+  : "${TEAM2_NAME:=Aqua}";   : "${TEAM2_COLOR:=BLUE}";   : "${TEAM2_MAX_PLAYERS:=8}"
+  : "${TEAM3_NAME:=Terra}";  : "${TEAM3_COLOR:=GREEN}";  : "${TEAM3_MAX_PLAYERS:=8}"
+  : "${TEAM4_NAME:=Ventus}"; : "${TEAM4_COLOR:=YELLOW}"; : "${TEAM4_MAX_PLAYERS:=8}"
+  : "${MAX_SPAWNED_RESOURCES:=-1}"
+  : "${HOLOGRAM_ENABLED:=true}"
+
+  export ARENA_NAME PAUSE_COUNTDOWN GAME_TIME MIN_PLAYERS POST_GAME_WAITING
+  export TEAM1_NAME TEAM1_COLOR TEAM1_MAX_PLAYERS
+  export TEAM2_NAME TEAM2_COLOR TEAM2_MAX_PLAYERS
+  export TEAM3_NAME TEAM3_COLOR TEAM3_MAX_PLAYERS
+  export TEAM4_NAME TEAM4_COLOR TEAM4_MAX_PLAYERS
+  export MAX_SPAWNED_RESOURCES HOLOGRAM_ENABLED
+
+  command -v envsubst >/dev/null 2>&1 || { echo "ERROR: envsubst is required for BedWars arena templating" >&2; exit 1; }
+  [[ "$ARENA_NAME" =~ ^[A-Za-z0-9_-]+$ ]] || { echo "ERROR: Invalid ARENA_NAME" >&2; exit 1; }
+  mkdir -p "${PLUGINS_DIR}/BedWars/arenas"
+  arena_output="${PLUGINS_DIR}/BedWars/arenas/${ARENA_NAME}.yml"
+  arena_tmp="$(mktemp "${arena_output}.XXXXXX")"
+  # Only replace known variables; preserve any unrelated $-text in the template.
+  envsubst '$ARENA_NAME $PAUSE_COUNTDOWN $GAME_TIME $MIN_PLAYERS $POST_GAME_WAITING $TEAM1_NAME $TEAM1_COLOR $TEAM1_MAX_PLAYERS $TEAM2_NAME $TEAM2_COLOR $TEAM2_MAX_PLAYERS $TEAM3_NAME $TEAM3_COLOR $TEAM3_MAX_PLAYERS $TEAM4_NAME $TEAM4_COLOR $TEAM4_MAX_PLAYERS $MAX_SPAWNED_RESOURCES $HOLOGRAM_ENABLED' < "$BEDWARS_ARENA_TEMPLATE" > "$arena_tmp"
+  if command -v yq >/dev/null 2>&1; then
+    yq -y '.' "$arena_tmp" >/dev/null || { rm -f "$arena_tmp"; echo "ERROR: Invalid generated BedWars arena YAML" >&2; exit 1; }
+  fi
+  mv -f "$arena_tmp" "$arena_output"
+  echo "BedWars arena generated: $arena_output"
+fi
+
+if [ -f "$BEDWARS_CONFIG" ]; then
+  : "${BRONZE_INTERVAL:=1}"
+  : "${IRON_INTERVAL:=3}"
+  : "${GOLD_INTERVAL:=8}"
+  : "${DIAMOND_INTERVAL:=30}"
+  : "${EMERALD_INTERVAL:=60}"
+  command -v yq >/dev/null 2>&1 || { echo "ERROR: yq is required for BedWars resource intervals" >&2; exit 1; }
+  for resource in bronze iron gold diamond emerald; do
+    case "$resource" in
+      bronze) interval="$BRONZE_INTERVAL" ;;
+      iron) interval="$IRON_INTERVAL" ;;
+      gold) interval="$GOLD_INTERVAL" ;;
+      diamond) interval="$DIAMOND_INTERVAL" ;;
+      emerald) interval="$EMERALD_INTERVAL" ;;
+    esac
+    [[ "$interval" =~ ^[0-9]+([.][0-9]+)?$ ]] || { echo "ERROR: Invalid ${resource} interval: $interval" >&2; exit 1; }
+    yq -y -i --arg resource "$resource" --arg interval "$interval" '.resources[$resource].interval = ($interval | tonumber)' "$BEDWARS_CONFIG"
+  done
+  echo "BedWars resource intervals updated: $BEDWARS_CONFIG"
 fi
 
 echo "Starting Paper for Minecraft ${MC_VERSION:-unknown} (Xms=${XMS}, Xmx=${XMX})..."
