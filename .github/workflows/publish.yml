@@ -14,6 +14,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_OWNER: lanslide-team
   BASE_NAME: minecraft-base
+  BEDWARS_NAME: minecraft-bedwars
   BUILD_NAME: minecraft-build
   MAP_NAME: minecraft-map
 
@@ -53,6 +54,21 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.BASE_NAME }}:${{ steps.version.outputs.branch }}
           labels: |
             org.opencontainers.image.title=Minecraft Base
+            org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      
+      - name: Build & Push Bedwars variant
+        uses: docker/build-push-action@v6
+        with:
+          context: ./bedwars
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ env.BEDWARS_NAME }}:${{ steps.version.outputs.branch }}
+          build-args: |
+            BASE_TAG=${{ steps.version.outputs.branch }}
+          labels: |
+            org.opencontainers.image.title=Minecraft Bedwars
             org.opencontainers.image.version=${{ steps.version.outputs.mc_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
