@@ -1,9 +1,12 @@
 ARG MC_VERSION=26.3
 ARG JAVA_MAJOR=26
+ARG PAPER_BUILD=latest
 
 # ---------- Build Stage ----------
 FROM eclipse-temurin:${JAVA_MAJOR}-jdk AS build
 ARG MC_VERSION
+ARG PAPER_BUILD
+
 ENV MC_VERSION=${MC_VERSION}
 
 WORKDIR /build
@@ -22,9 +25,10 @@ RUN USER_AGENT="LAN-slide-Minecraft-Server/1.0 (https://lanslide.com.au)" && \
     PAPER_URL=$(curl -fsSL \
       -H "User-Agent: ${USER_AGENT}" \
       "https://fill.papermc.io/v3/projects/paper/versions/${MC_VERSION}/builds" \
-      | jq -r '.[0].downloads."server:default".url') && \
-    echo "Downloading Paper ${MC_VERSION}: ${PAPER_URL}" && \
-    test "${PAPER_URL}" != "null" && \
+      | jq -r --arg build "${PAPER_BUILD}" \
+        'if $build == "latest" then .[0].downloads."server:default".url else ([.[] | select((.id | tostring) == $build or (.id | tostring | startswith($build + "-")))] | first | .downloads."server:default".url) end // empty') && \
+    echo "Downloading Paper ${MC_VERSION} build ${PAPER_BUILD}: ${PAPER_URL}" && \
+    test -n "${PAPER_URL}" && \
     curl -fsSL \
       -H "User-Agent: ${USER_AGENT}" \
       -o /build/paper.jar \

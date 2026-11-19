@@ -14,28 +14,28 @@ teams:
     isNewColor: true
     color: $TEAM1_COLOR
     maxPlayers: $TEAM1_MAX_PLAYERS
-    bed: -54.1;0.0;0.0;-90.0;90.0
+    bed: -55.0;0.0;0.0;0.0;0.0
     spawn: -65.0;0.0;0.0;-90.0;10.0
     actualName: $TEAM1_NAME
   $TEAM2_NAME:
     isNewColor: true
     color: $TEAM2_COLOR
     maxPlayers: $TEAM2_MAX_PLAYERS
-    bed: 0.0;0.0;54.9;180.0;90.0
+    bed: 0.0;0.0;55.0;0.0;0.0
     spawn: 0.0;0.0;65.0;180.0;10.0
     actualName: $TEAM2_NAME
   $TEAM3_NAME:
     isNewColor: true
     color: $TEAM3_COLOR
     maxPlayers: $TEAM3_MAX_PLAYERS
-    bed: 54.9;0.0;0.0;90.0;90.0
+    bed: 0.0;0.0;55.0;0.0;0.0
     spawn: 65.0;0.0;0.0;90.0;10.0
     actualName: $TEAM3_NAME
   $TEAM4_NAME:
     isNewColor: true
     color: $TEAM4_COLOR
     maxPlayers: $TEAM4_MAX_PLAYERS
-    bed: 0.0;0.0;-54.1;0.0;90.0
+    bed: 0.0;0.0;55.0;0.0;0.0
     spawn: 0.0;0.0;-65.0;0.0;10.0
     actualName: $TEAM4_NAME
 spawners:

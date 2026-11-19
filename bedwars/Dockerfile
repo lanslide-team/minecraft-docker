@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gettext-base &&
 
 COPY --chown=mc:mc openworld.yml.template ./defaults/openworld.yml.template
 COPY --chown=mc:mc plugins/ ./plugins/
+COPY --chown=mc:mc shop.yml ./plugins/BedWars
 COPY --chown=mc:mc settings.sh ./
 
 RUN chmod +x /mc/settings.sh

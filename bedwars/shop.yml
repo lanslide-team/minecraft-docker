@@ -1,0 +1,538 @@
+data:
+- stack: sandstone;1;Blocks & Defence;Building and bed protection
+  row: 1
+  column: 1
+  items:
+  - cut_sandstone;2 for 1 of bronze
+  - end_stone;3 for 7 of bronze
+  - iron_block for 3 of iron
+  - glowstone;4 for 15 of bronze
+  - price: 4 of bronze
+    properties: applycolorbyteam
+    stack: glass
+  - price: 5 of emerald
+    stack:
+      type: end_stone
+      display-name: Fortress End Stone
+      amount: 8
+  - obsidian;4 for 4 emerald
+  - cobweb;4 for 2 emerald
+  - obsidian;8 for 7 of emerald
+- stack: diamond_sword;1;Weapons;Swords and axes for every stage
+  row: 1
+  column: 2
+  items:
+  - price: 8 of bronze
+    stack:
+      type: stick
+      enchants:
+        knockback: 1
+  - price: 1 of iron
+    stack:
+      type: golden_sword
+      enchants:
+        sharpness: 1
+  - price: 3 of iron
+    stack:
+      type: golden_sword
+      enchants:
+        sharpness: 2
+  - price: 7 of iron
+    stack:
+      type: golden_sword
+      enchants:
+        sharpness: 3
+  - price: 3 of gold
+    stack:
+      type: golden_sword
+      enchants:
+        sharpness: 2
+        knockback: 1
+  - price: 15 of gold
+    stack:
+      type: golden_axe
+      display-name: Axe of Infinity
+      enchants:
+        sharpness: 1
+        unbreaking: 1
+        knockback: 1
+  - price: 6 of emerald
+    stack:
+      type: diamond_axe
+      display-name: Battle Axe
+      enchants:
+        sharpness: 2
+  - price: 12 of emerald
+    stack:
+      type: netherite_sword
+      display-name: Netherite Sword
+      enchants:
+        sharpness: 2
+  - price: 18 of emerald
+    stack:
+      type: netherite_axe
+      display-name: Siegebreaker Axe
+      enchants:
+        sharpness: 2
+  - price: 8 of diamond
+    stack:
+      type: diamond_sword
+      display-name: Duelist Sword
+      enchants:
+        sharpness: 1
+        unbreaking: 2
+  - diamond_sword for 6 emerald
+- stack: diamond_chestplate;1;Armour;Leather to netherite armour
+  row: 1
+  column: 3
+  items:
+  - price: 1 of bronze
+    properties: applycolorbyteam
+    stack:
+      type: leather_helmet
+      enchants:
+        protection: 1
+  - price: 2 of bronze
+    properties: applycolorbyteam
+    stack:
+      type: leather_chestplate
+      enchants:
+        protection: 1
+  - price: 1 of bronze
+    properties: applycolorbyteam
+    stack:
+      type: leather_leggings
+      enchants:
+        protection: 1
+  - price: 1 of bronze
+    properties: applycolorbyteam
+    stack:
+      type: leather_boots
+      enchants:
+        protection: 1
+  - price: 2 of iron
+    stack:
+      type: chainmail_helmet
+      enchants:
+        protection: 1
+  - price: 1 of iron
+    stack:
+      type: chainmail_chestplate
+      enchants:
+        protection: 1
+  - price: 3 of iron
+    stack:
+      type: chainmail_chestplate
+      enchants:
+        protection: 2
+  - price: 7 of iron
+    stack:
+      type: chainmail_chestplate
+      enchants:
+        protection: 3
+  - price: 2 of iron
+    stack:
+      type: chainmail_leggings
+      enchants:
+        protection: 1
+  - price: 2 of iron
+    stack:
+      type: chainmail_boots
+      enchants:
+        protection: 1
+  - price: 4 of gold
+    stack:
+      type: iron_helmet
+      enchants:
+        protection: 1
+  - price: 10 of gold
+    stack:
+      type: iron_helmet
+      display-name: Helm
+      enchants:
+        protection: 2
+  - price: 6 of gold
+    stack:
+      type: iron_chestplate
+      enchants:
+        protection: 1
+  - price: 5 of gold
+    stack:
+      type: iron_leggings
+      enchants:
+        protection: 1
+  - price: 3 of gold
+    stack:
+      type: iron_boots
+      enchants:
+        protection: 1
+  - diamond_helmet for 3 emerald
+  - diamond_chestplate for 8 emerald
+  - diamond_leggings for 5 emerald
+  - diamond_boots for 3 emerald
+  - price: 10 of diamond
+    stack:
+      type: diamond_helmet
+      display-name: Reinforced Helmet
+      enchants:
+        protection: 2
+  - price: 12 of emerald
+    stack:
+      type: diamond_chestplate
+      display-name: Reinforced Diamond Chestplate
+      enchants:
+        protection: 2
+  - price: 10 of emerald
+    stack:
+      type: diamond_leggings
+      display-name: Reinforced Diamond Leggings
+      enchants:
+        protection: 2
+  - price: 7 of emerald
+    stack:
+      type: diamond_boots
+      display-name: Reinforced Diamond Boots
+      enchants:
+        protection: 2
+  - price: 12 of emerald
+    stack:
+      type: netherite_helmet
+      display-name: Juggernaut Helmet
+      enchants:
+        protection: 2
+  - price: 16 of emerald
+    stack:
+      type: netherite_chestplate
+      display-name: Juggernaut Chestplate
+      enchants:
+        protection: 2
+  - price: 14 of emerald
+    stack:
+      type: netherite_leggings
+      display-name: Juggernaut Leggings
+      enchants:
+        protection: 2
+  - price: 10 of emerald
+    stack:
+      type: netherite_boots
+      display-name: Netherite Boots
+      enchants:
+        protection: 2
+- stack: diamond_pickaxe;1;Tools;Pickaxes and breaking tools
+  row: 2
+  column: 1
+  items:
+  - diamond_pickaxe for 3 emerald
+  - price: 4 of bronze
+    stack:
+      type: iron_pickaxe
+      enchants:
+        fortune: 1
+  - price: 2 of iron
+    stack:
+      type: iron_pickaxe
+      enchants:
+        fortune: 2
+  - price: 1 of gold
+    stack:
+      type: iron_pickaxe
+      enchants:
+        fortune: 3
+  - price: 5 of emerald
+    stack:
+      type: diamond_pickaxe
+      display-name: Diamond Pickaxe - Efficiency III
+      enchants:
+        efficiency: 3
+  - price: 4 of diamond
+    stack:
+      type: diamond_axe
+      display-name: Lumberjack Axe
+      enchants:
+        efficiency: 3
+  - price: 2 of iron
+    stack:
+      type: shears
+      display-name: Fast Shears
+      enchants:
+        efficiency: 3
+- stack: bow;1;Ranged;Bows crossbows and projectiles
+  row: 2
+  column: 2
+  items:
+  - price: 3 of gold
+    stack:
+      type: bow
+      enchants:
+        infinity: 1
+  - price: 7 of gold
+    stack:
+      type: bow
+      enchants:
+        infinity: 1
+        power: 1
+  - price: 13 of gold
+    stack:
+      type: bow
+      enchants:
+        infinity: 1
+        power: 2
+  - price: 14 of gold
+    stack:
+      type: bow
+      enchants:
+        infinity: 1
+        flame: 1
+  - price: 15 of gold
+    stack:
+      type: bow
+      enchants:
+        infinity: 1
+        flame: 1
+        punch: 1
+  - arrow for 1 of gold
+  - price: 6 of diamond
+    stack:
+      type: crossbow
+      display-name: Rapid Crossbow
+      enchants:
+        quick_charge: 3
+  - price: 9 of emerald
+    stack:
+      type: bow
+      display-name: Elite Bow
+      enchants:
+        power: 3
+        infinity: 1
+  - price: 5 of emerald
+    stack:
+      type: crossbow
+      display-name: Scattershot Crossbow
+      enchants:
+        multishot: 1
+        quick_charge: 1
+  - price: 3 of diamond
+    stack:
+      type: spectral_arrow
+      display-name: Tracking Arrows
+      amount: 8
+  - crossbow for 4 diamond
+  - snowball;16 for 1 diamond
+- stack: golden_apple;1;Food & Healing;Food and golden apples
+  row: 2
+  column: 3
+  items:
+  - cooked_porkchop;2 for 4 of bronze
+  - golden_apple for 2 of iron
+  - bread;10 for 5 of gold
+  - golden_apple;3 for 4 of diamond
+- stack: potion;1;Potions;Healing buffs and stealth
+  row: 3
+  column: 1
+  items:
+  - stack:
+      type: potion
+      potion-type: healing
+    price: 3 of iron
+  - stack:
+      type: potion
+      potion-type: strong_healing
+    price: 5 of iron
+  - stack:
+      type: potion
+      potion-type: swiftness
+    price: 7 of iron
+  - stack:
+      type: potion
+      potion-type: strength
+    price: 1 of gold
+  - stack:
+      type: potion
+      potion-type: regeneration
+    price: 3 of gold
+  - price: 3 of diamond
+    stack:
+      type: splash_potion
+      potion-type: slowness
+  - price: 3 of diamond
+    stack:
+      type: potion
+      potion-type: fire_resistance
+  - price: 4 of emerald
+    stack:
+      type: potion
+      display-name: Invisibility Potion
+      potion-type: invisibility
+  - price: 2 of emerald
+    stack:
+      type: potion
+      display-name: Jump Boost Potion
+      potion-type: leaping
+  - price: 4 of emerald
+    stack:
+      type: potion
+      display-name: Turtle Master Potion
+      potion-type: turtle_master
+- stack: tnt;1;Utilities;Traps shields and special gadgets
+  row: 3
+  column: 2
+  items:
+  - totem_of_undying for 8 emerald
+  - shield for 4 diamond
+  - water_bucket for 2 diamond
+  - price: 3 of diamond
+    stack:
+      type: lava_bucket
+      display-name: Lava Bucket
+  - price: 5 of diamond
+    stack:
+      type: tnt
+      display-name: Siege TNT
+      amount: 4
+  - chest for 1 of iron
+  - ender_chest for 1 of gold
+  - price: 6 of diamond
+    stack:
+      type: shield
+      display-name: Reinforced Shield
+      enchants:
+        unbreaking: 3
+  - price: 3 of iron
+    stack: tnt;1;Autoigniteable TNT
+    properties:
+    - name: AutoIgniteableTnt
+      explosion-time: 5
+      damage-placer: false
+  - price: 3 of iron
+    properties:
+    - name: Trap
+      data:
+      - sound: ENTITY_SHEEP_AMBIENT
+      - effect:
+          effect: blindness
+          amplifier: 2
+          duration: 100
+          ambient: true
+          particles: true
+          icon: true
+      - effect:
+          effect: weakness
+          amplifier: 2
+          duration: 100
+          ambient: true
+          particles: true
+          icon: true
+      - effect:
+          effect: slowness
+          amplifier: 2
+          duration: 100
+          ambient: true
+          particles: true
+          icon: true
+    stack:
+      type: string
+      display-name: Trap
+      lore:
+      - Get informed if an enemy steps on your trap
+      - and your enemy won't be able to move properly.
+  - price: 6 of iron
+    properties:
+    - name: MagnetShoes
+      probability: 75
+    stack:
+      type: iron_boots
+      display-name: Magnet-Shoes
+      lore:
+      - Wear those shoes and have a 75%
+      - chance of getting no knockback!
+  - price: 5 of iron
+    properties: Tracker
+    stack:
+      type: compass
+      display-name: Tracker
+      lore:
+      - Wanna know where your closest target is?
+      - Let's try this out!
+  - price: 5 of gold
+    properties:
+    - name: arrowblocker
+      delay: 5
+    stack:
+      type: ender_eye
+      display-name: Arrow Blocker
+      lore:
+      - Block arrows that are coming
+      - for you with black magic.
+      - I mean, with this item.
+  - price: 64 of bronze
+    properties:
+    - name: protectionwall
+    stack:
+      type: bricks
+      display-name: Protection Wall
+      lore:
+      - Instantly builds a wall that
+      - can save your life!
+  - price: 24 of iron
+    properties:
+    - name: Golem
+      speed: 0.25
+      follow-range: 16.0
+    stack:
+      type: ghast_spawn_egg
+      display-name: Golem
+      lore:
+      - An iron golem that will protect
+      - your team from the enemies.
+  - price: 10 of gold
+    properties: TNTSheep
+    stack:
+      type: sheep_spawn_egg
+      display-name: TNT Sheep
+      lore:
+      - Use the TNT-Sheep! It will
+      - walk towards your closest enemy
+      - and explode within 8 seconds!
+  - price: 40 of iron
+    properties: ThrowableFireball
+    stack:
+      type: fire_charge
+      display-name: Fireball
+      lore:
+      - Is it a bird? Is it a plane?
+      - By the time you know
+      - you are dead!
+  - price: 4 of diamond
+    stack:
+      type: wind_charge
+      display-name: Wind Charge Bundle
+      amount: 8
+- stack: ender_pearl;1;Mobility;Pearls wind charges and escapes
+  row: 3
+  column: 3
+  items:
+  - ender_pearl for 4 emerald
+  - wind_charge;4 for 2 emerald
+  - ender_pearl;2 for 7 of emerald
+  - price: 7 of iron
+    properties:
+    - name: WarpPowder
+      delay: 6
+    stack:
+      type: gunpowder
+      display-name: Warp Powder
+      lore:
+      - When using this powder you'll get
+      - teleported to you spawn point within 6 seconds
+      - 'Warning: Any movement will stop the process'
+  - price: 15 of iron
+    properties:
+    - name: rescueplatform
+      delay: 5
+    stack:
+      type: blaze_rod
+      display-name: Rescue Platform
+      lore:
+      - Protect yourself from falling into
+      - void with a Rescue Platform.
+      - This is your last hope!
