@@ -1,7 +1,7 @@
 data:
 - stack: sandstone;1;Blocks & Defence;Building and bed protection
   row: 1
-  column: 1
+  column: 3
   items:
   - cut_sandstone;2 for 1 of bronze
   - end_stone;3 for 7 of bronze
@@ -20,7 +20,7 @@ data:
   - obsidian;8 for 7 of emerald
 - stack: diamond_sword;1;Weapons;Swords and axes for every stage
   row: 1
-  column: 2
+  column: 4
   items:
   - price: 8 of bronze
     stack:
@@ -84,7 +84,7 @@ data:
   - diamond_sword for 6 emerald
 - stack: diamond_chestplate;1;Armour;Leather to netherite armour
   row: 1
-  column: 3
+  column: 5
   items:
   - price: 1 of bronze
     properties: applycolorbyteam
@@ -220,7 +220,7 @@ data:
         protection: 2
 - stack: diamond_pickaxe;1;Tools;Pickaxes and breaking tools
   row: 2
-  column: 1
+  column: 3
   items:
   - diamond_pickaxe for 3 emerald
   - price: 4 of bronze
@@ -258,7 +258,7 @@ data:
         efficiency: 3
 - stack: bow;1;Ranged;Bows crossbows and projectiles
   row: 2
-  column: 2
+  column: 4
   items:
   - price: 3 of gold
     stack:
@@ -320,7 +320,7 @@ data:
   - snowball;16 for 1 diamond
 - stack: golden_apple;1;Food & Healing;Food and golden apples
   row: 2
-  column: 3
+  column: 5
   items:
   - cooked_porkchop;2 for 4 of bronze
   - golden_apple for 2 of iron
@@ -328,7 +328,7 @@ data:
   - golden_apple;3 for 4 of diamond
 - stack: potion;1;Potions;Healing buffs and stealth
   row: 3
-  column: 1
+  column: 3
   items:
   - stack:
       type: potion
@@ -375,7 +375,7 @@ data:
       potion-type: turtle_master
 - stack: tnt;1;Utilities;Traps shields and special gadgets
   row: 3
-  column: 2
+  column: 4
   items:
   - totem_of_undying for 8 emerald
   - shield for 4 diamond
@@ -384,12 +384,6 @@ data:
     stack:
       type: lava_bucket
       display-name: Lava Bucket
-  - price: 5 of diamond
-    stack:
-      type: tnt
-      display-name: Siege TNT
-      amount: 4
-  - chest for 1 of iron
   - ender_chest for 1 of gold
   - price: 6 of diamond
     stack:
@@ -509,7 +503,7 @@ data:
       amount: 8
 - stack: ender_pearl;1;Mobility;Pearls wind charges and escapes
   row: 3
-  column: 3
+  column: 5
   items:
   - ender_pearl for 4 emerald
   - wind_charge;4 for 2 emerald
